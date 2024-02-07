@@ -26,11 +26,13 @@ function GridVisualizerComponent({ audioContext, src }) {
         const squareSize = canvas.width / 8;
         const borderSize = squareSize / 8;
 
-        for (let j = 0; j < 8; j++) {
+        // to change -> center a amplitude
+
+        for (let j = 7; j >= 0; j--) {
           for (let i = 0; i < 8; i++) {
             const barHeight = dataArray[i * 8 + j];
 
-            context.fillStyle = "rgb(" + (barHeight + 100) + ",50,50)";
+            context.fillStyle = "rgb(" + (barHeight + 50) + ",50,50)";
             context.fillRect(
               i * squareSize + borderSize,
               canvas.height - (j * squareSize + borderSize) - squareSize,

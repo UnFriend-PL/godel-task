@@ -29,7 +29,9 @@ function Page() {
 
     reader.readAsArrayBuffer(file);
   };
-
+  const toggleCanvas = () => {
+    setShowCanvas(!showCanvas);
+  };
   const handlePlay = () => {
     if (audioRef.current) {
       audioRef.current.play();
@@ -44,10 +46,15 @@ function Page() {
 
   return (
     <div className="center-content">
-      <input type="file" onChange={handleFileChange} />
-      {/* {showCanvas && <CanvasVisualizerComponent analyser={analyser} />} */}
-      <GridVisualizerComponent audioContext={audioContext} src={source} />
-      <button onClick={() => setShowCanvas(!showCanvas)}>Toggle Canvas</button>
+      <input type="file" onChange={handleFileChange} className="file-input" />
+      {showCanvas ? (
+        <CanvasVisualizerComponent analyser={analyser} />
+      ) : (
+        <GridVisualizerComponent audioContext={audioContext} src={source} />
+      )}
+      <button className="canvas-button" onClick={toggleCanvas}>
+        Change Canvas
+      </button>
       <audio
         ref={audioRef}
         controls
