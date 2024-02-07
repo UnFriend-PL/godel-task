@@ -1,10 +1,12 @@
 "use client";
 import React, { useRef, useState } from "react";
-import CanvasComponent from "./components/CanvasComponent";
+import CanvasVisualizerComponent from "./components/CanvasVisualizerComponent";
+import GridVisualizerComponent from "./components/GridVisualizerComponent";
 
 function Page() {
   const [audioContext, setAudioContext] = useState(null);
   const [analyser, setAnalyser] = useState(null);
+  const [showCanvas, setShowCanvas] = useState(true);
   const [source, setSource] = useState(null);
   const audioRef = useRef(null);
   const handleFileChange = (event) => {
@@ -41,9 +43,11 @@ function Page() {
   };
 
   return (
-    <div>
+    <div className="center-content">
       <input type="file" onChange={handleFileChange} />
-      <CanvasComponent analyser={analyser} />
+      {/* {showCanvas && <CanvasVisualizerComponent analyser={analyser} />} */}
+      <GridVisualizerComponent audioContext={audioContext} src={source} />
+      <button onClick={() => setShowCanvas(!showCanvas)}>Toggle Canvas</button>
       <audio
         ref={audioRef}
         controls
@@ -53,5 +57,4 @@ function Page() {
     </div>
   );
 }
-
 export default Page;

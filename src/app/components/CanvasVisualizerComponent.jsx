@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 
-function CanvasComponent({ analyser }) {
+function CanvasVisualizerComponent({ analyser }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -33,4 +33,4 @@ function CanvasComponent({ analyser }) {
   return <canvas ref={canvasRef} width="500" height="200"></canvas>;
 }
 
-export default CanvasComponent;
+export default CanvasVisualizerComponent;
